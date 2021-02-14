@@ -6,6 +6,9 @@ namespace SimpleRandom
     /// </summary>
     public class SystemRandom : Random
     {
+        //Donald E. Knuth's subtractive random number generator 쓴다고 함.
+        //ref: https://rosettacode.org/wiki/Subtractive_generator
+
         System.Random m_Random = new System.Random();
 
         public override int RandMax => int.MaxValue;
