@@ -32,8 +32,14 @@ public class SampleScript : MonoBehaviour
                 m_GeneratedTexture.SetPixel(x, y, Color.Lerp(Color.white, Color.red, m_Randoms[x, y]));
         m_GeneratedTexture.Apply();
 
+        float avr = 0f;
+        for (int y = 0; y < m_Size.y; y++)
+            for (int x = 0; x < m_Size.x; x++)
+                avr += m_Randoms[x, y];
+        avr /= (m_Size.x * m_Size.y);
+
         if (m_RawImage != null) m_RawImage.texture = m_GeneratedTexture;
-        if (m_TextTime != null) m_TextTime.text = string.Format("{0} Time: {1:n0}ms", random.GetType().Name, (endTicks - startTicks) / System.TimeSpan.TicksPerMillisecond);
+        if (m_TextTime != null) m_TextTime.text = string.Format("{0} Time: {1:n0}ms\nAVR: {2:f4}", random.GetType().Name, (endTicks - startTicks) / System.TimeSpan.TicksPerMillisecond, avr * 100);
     }
 
     public void ClearTexture()
