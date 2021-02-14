@@ -54,6 +54,11 @@ public class SampleScript : MonoBehaviour
         GenerateTexture(new SimpleRandom.SystemRandom());
     }
 
+    public void DoRandom_UnityRandom()
+    {
+        GenerateTexture(new SimpleRandom.UnityRandom());
+    }
+
     public void DoRandom_MiddleSquareRandom()
     {
         GenerateTexture(new SimpleRandom.MiddleSquareRandom());
