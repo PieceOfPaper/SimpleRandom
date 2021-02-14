@@ -11,7 +11,7 @@ namespace SimpleRandom
         const int UNIT1 = 1000000;
         const int UNIT2 = 100;
 
-        float m_CurrentSeed;
+        long m_CurrentSeed;
 
         public override int RandMax => UNIT1 / UNIT2;
 
@@ -27,14 +27,10 @@ namespace SimpleRandom
 
         public override int Rand()
         {
-            float result;
-
-            result = m_CurrentSeed * m_CurrentSeed;
-            result %= UNIT1;
-            result /= UNIT2;
-            m_CurrentSeed = result;
-
-            return (int)result;
+            m_CurrentSeed = m_CurrentSeed * m_CurrentSeed;
+            m_CurrentSeed %= UNIT1;
+            m_CurrentSeed /= UNIT2;
+            return (int)m_CurrentSeed;
         }
     }
 }
