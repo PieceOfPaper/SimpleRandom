@@ -4,7 +4,7 @@ namespace SimpleRandom
     /// <summary>
     /// 중앙 제곱법
     /// </summary>
-    public class MiddleSquareRandom : Random
+    public class MiddleSquareRandom : Random32
     {
         //ref: https://en.wikipedia.org/wiki/Middle-square_method
 

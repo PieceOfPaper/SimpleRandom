@@ -18,13 +18,17 @@ public class SampleScript : MonoBehaviour
         ClearTexture();
 
         random.Init(System.DateTime.Now.Millisecond);
-        m_GeneratedTexture = new Texture2D(m_Size.x, m_Size.y);
-        m_Randoms = new float[m_Size.x, m_Size.y];
+        if (m_GeneratedTexture == null) m_GeneratedTexture = new Texture2D(m_Size.x, m_Size.y);
+        if (m_Randoms == null) m_Randoms = new float[m_Size.x, m_Size.y];
 
         long startTicks = System.DateTime.Now.Ticks;
         for (int y = 0; y < m_Size.y; y++)
+        {
             for (int x = 0; x < m_Size.x; x++)
-                m_Randoms[x, y] = random.RandRange(0f, 1f);
+            {
+                m_Randoms[x, y] = random.RandRate();
+            }
+        }
         long endTicks = System.DateTime.Now.Ticks;
 
         for (int y = 0; y < m_Size.y; y++)
@@ -39,7 +43,7 @@ public class SampleScript : MonoBehaviour
         avr /= (m_Size.x * m_Size.y);
 
         if (m_RawImage != null) m_RawImage.texture = m_GeneratedTexture;
-        if (m_TextTime != null) m_TextTime.text = string.Format("{0} Time: {1:n0}ms\nAVR: {2:f4}", random.GetType().Name, (endTicks - startTicks) / System.TimeSpan.TicksPerMillisecond, avr * 100);
+        if (m_TextTime != null) m_TextTime.text = $"{random.GetType().Name} Time: {((endTicks - startTicks) / System.TimeSpan.TicksPerMillisecond)}ms\nAvr: {(avr * 100).ToString("f2")}";
     }
 
     public void ClearTexture()
@@ -49,28 +53,33 @@ public class SampleScript : MonoBehaviour
         m_GeneratedTexture = null;
     }
 
+    SimpleRandom.Random m_SystemRandom = new SimpleRandom.SystemRandom();
     public void DoRandom_SystemRandom()
     {
-        GenerateTexture(new SimpleRandom.SystemRandom());
+        GenerateTexture(m_SystemRandom);
     }
 
+    SimpleRandom.Random m_UnityRandom = new SimpleRandom.UnityRandom();
     public void DoRandom_UnityRandom()
     {
-        GenerateTexture(new SimpleRandom.UnityRandom());
+        GenerateTexture(m_UnityRandom);
     }
 
+    SimpleRandom.Random m_MiddleSquareRandom = new SimpleRandom.MiddleSquareRandom();
     public void DoRandom_MiddleSquareRandom()
     {
-        GenerateTexture(new SimpleRandom.MiddleSquareRandom());
+        GenerateTexture(m_MiddleSquareRandom);
     }
 
+    SimpleRandom.Random m_LCGRandom = new SimpleRandom.LCGRandom();
     public void DoRandom_LCGRandom()
     {
-        GenerateTexture(new SimpleRandom.LCGRandom());
+        GenerateTexture(m_LCGRandom);
     }
 
+    SimpleRandom.Random m_MT19937Random = new SimpleRandom.MT19937Random();
     public void DoRandom_MT19937Random()
     {
-        GenerateTexture(new SimpleRandom.MT19937Random());
+        GenerateTexture(m_MT19937Random);
     }
 }

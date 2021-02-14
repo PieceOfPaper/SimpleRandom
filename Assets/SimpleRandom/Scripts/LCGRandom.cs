@@ -4,7 +4,7 @@ namespace SimpleRandom
     /// <summary>
     /// 선형 합동 생성기
     /// </summary>
-    public class LCGRandom : Random
+    public class LCGRandom : Random32
     {
         //ref: https://en.wikipedia.org/wiki/Linear_congruential_generator
 

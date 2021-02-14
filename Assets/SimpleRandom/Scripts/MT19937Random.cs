@@ -4,7 +4,7 @@ namespace SimpleRandom
     /// <summary>
     /// 메르센 트위스터
     /// </summary>
-    public class MT19937Random : Random
+    public class MT19937Random : Random32
     {
         //ref: https://en.wikipedia.org/wiki/Mersenne_Twister
         //ref: https://evan-moon.github.io/2019/07/14/what-is-random/
@@ -66,9 +66,7 @@ namespace SimpleRandom
             x ^= (x << 15) & 0xefc60000;
             x ^= (x >> 18);
 
-            int output = (int)(x >> 1);
-            if (output < 0) output += int.MaxValue;
-            return output;
+            return (int)(x >> 1);
         }
     }
 }
