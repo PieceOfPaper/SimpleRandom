@@ -68,4 +68,9 @@ public class SampleScript : MonoBehaviour
     {
         GenerateTexture(new SimpleRandom.LCGRandom());
     }
+
+    public void DoRandom_MT19937Random()
+    {
+        GenerateTexture(new SimpleRandom.MT19937Random());
+    }
 }
