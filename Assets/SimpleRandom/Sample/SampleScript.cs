@@ -82,4 +82,10 @@ public class SampleScript : MonoBehaviour
     {
         GenerateTexture(m_MT19937Random);
     }
+
+    SimpleRandom.Random m_Well512Random = new SimpleRandom.Well512Random();
+    public void DoRandom_Well512Random()
+    {
+        GenerateTexture(m_Well512Random);
+    }
 }
