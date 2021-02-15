@@ -88,4 +88,10 @@ public class SampleScript : MonoBehaviour
     {
         GenerateTexture(m_Well512Random);
     }
+
+    SimpleRandom.Random m_XorShiftRandom = new SimpleRandom.XorShiftRandom();
+    public void DoRandom_XorShiftRandom()
+    {
+        GenerateTexture(m_XorShiftRandom);
+    }
 }
