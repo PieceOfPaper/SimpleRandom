@@ -94,4 +94,10 @@ public class SampleScript : MonoBehaviour
     {
         GenerateTexture(m_XorShiftRandom);
     }
+
+    SimpleRandom.Random m_SubtractiveGeneratorRandom = new SimpleRandom.SubtractiveGeneratorRandom();
+    public void DoRandom_SubtractiveGeneratorRandom()
+    {
+        GenerateTexture(m_SubtractiveGeneratorRandom);
+    }
 }
