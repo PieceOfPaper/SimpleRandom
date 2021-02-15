@@ -7,7 +7,6 @@ namespace SimpleRandom
 
         uint m_Seed;
         
-        public override int RandMax => int.MaxValue;
 
         public override void Init(int seed) => Init((uint)seed);
         public override void Init(uint seed)

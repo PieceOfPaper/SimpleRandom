@@ -11,7 +11,6 @@ namespace SimpleRandom
         //ref: https://en.wikipedia.org/wiki/Xorshift
 
 
-        public override int RandMax => int.MaxValue;
 
         public override void Init(int seed)
         {

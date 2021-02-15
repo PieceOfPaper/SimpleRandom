@@ -21,7 +21,6 @@ namespace SimpleRandom
         protected uint m_Seed = 0;
 
 
-        public override int RandMax => int.MaxValue;
         public override void Init(int seed) => Init((uint)seed);
         public override void Init(uint seed) => m_Seed = seed;
         public override int Rand()

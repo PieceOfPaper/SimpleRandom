@@ -36,7 +36,7 @@ namespace SimpleRandom
 
     public abstract class Random32 : Random
     {
-        public abstract int RandMax { get; }
+        public virtual int RandMax => int.MaxValue;
 
         float m_RandToRateFloat = 0f;
         protected float RandToRateFloat

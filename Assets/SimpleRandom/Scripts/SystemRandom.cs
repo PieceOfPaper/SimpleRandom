@@ -12,7 +12,6 @@ namespace SimpleRandom
 
         System.Random m_Random = new System.Random();
 
-        public override int RandMax => int.MaxValue;
 
         public override void Init(int seed)
         {

@@ -21,7 +21,6 @@ namespace SimpleRandom
         uint[] m_MT = new uint[N];
         uint m_Index = 0;
 
-        public override int RandMax => int.MaxValue;
 
         public override void Init(int seed)
         {

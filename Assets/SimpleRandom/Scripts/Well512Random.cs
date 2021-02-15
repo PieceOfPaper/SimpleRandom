@@ -15,8 +15,6 @@ namespace SimpleRandom
         uint m_StateIndex = 0;
         uint[] m_States = new uint[R];
       
-        public override int RandMax => int.MaxValue;
-
 
         public override void Init(int seed) => Init((uint)seed);
         public override void Init(uint seed)
