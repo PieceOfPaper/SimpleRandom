@@ -37,13 +37,20 @@ public class SampleScript : MonoBehaviour
         m_GeneratedTexture.Apply();
 
         float avr = 0f;
+        float powAvr = 0f;
         for (int y = 0; y < m_Size.y; y++)
+        {
             for (int x = 0; x < m_Size.x; x++)
+            {
                 avr += m_Randoms[x, y];
+                powAvr += m_Randoms[x, y] * m_Randoms[x, y];
+            }
+        }
         avr /= (m_Size.x * m_Size.y);
+        powAvr /= (m_Size.x * m_Size.y);
 
         if (m_RawImage != null) m_RawImage.texture = m_GeneratedTexture;
-        if (m_TextTime != null) m_TextTime.text = $"{random.GetType().Name} Time: {((endTicks - startTicks) / System.TimeSpan.TicksPerMillisecond)}ms\nAvr: {(avr * 100).ToString("f2")}";
+        if (m_TextTime != null) m_TextTime.text = $"{random.GetType().Name} Time: {((endTicks - startTicks) / System.TimeSpan.TicksPerMillisecond)}ms\nAvr: {(avr * 100).ToString("f4")}, Vari: {((powAvr - (avr * avr)) * 100).ToString("f4")}";
     }
 
     public void ClearTexture()
@@ -87,6 +94,18 @@ public class SampleScript : MonoBehaviour
     public void DoRandom_XorShiftRandom()
     {
         GenerateTexture(m_XorShiftRandom);
+    }
+
+    SimpleRandom.Random m_XorShift64Random = new SimpleRandom.XorShift64Random();
+    public void DoRandom_XorShift64Random()
+    {
+        GenerateTexture(m_XorShift64Random);
+    }
+
+    SimpleRandom.Random m_XorShift128Random = new SimpleRandom.XorShift128Random();
+    public void DoRandom_XorShift128Random()
+    {
+        GenerateTexture(m_XorShift128Random);
     }
 
     SimpleRandom.Random m_SubtractiveGeneratorRandom = new SimpleRandom.SubtractiveGeneratorRandom();
