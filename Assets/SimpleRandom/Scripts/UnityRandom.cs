@@ -12,16 +12,15 @@ namespace SimpleRandom
 
 
 
-        public override void Init(int seed)
+        public override void Init(uint seed)
         {
-            UnityEngine.Random.InitState((int)seed);
+            UnityEngine.Random.InitState((int)(seed >> 1));
         }
 
-        public override void Init(uint seed) => Init((int)seed);
 
-        public override int Rand()
+        public override uint GetRand()
         {
-            return (int)(UnityEngine.Random.value * RandMax);
+            return (uint)(UnityEngine.Random.value * RAND_MAX);
         }
 
         public override float RandRate()

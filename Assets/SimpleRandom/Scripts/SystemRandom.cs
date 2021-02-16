@@ -13,12 +13,12 @@ namespace SimpleRandom
         System.Random m_Random = new System.Random();
 
 
-        public override void Init(int seed)
+        public override void Init(uint seed)
         {
-            m_Random = new System.Random((int)seed);
+            m_Random = new System.Random((int)(seed >> 1));
         }
 
-        public override int Rand() => (int)(m_Random.NextDouble() * RandMax);
+        public override uint GetRand() => (uint)(m_Random.NextDouble() * RAND_MAX);
 
 
         public override float RandRate()

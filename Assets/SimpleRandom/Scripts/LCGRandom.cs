@@ -15,18 +15,17 @@ namespace SimpleRandom
         // 3.M이 4의 배수일 경우, A-1도 4의 배수여야 한다.
         protected virtual uint A => 1664525;
         protected virtual uint C => 1013904223;
-        protected virtual uint M => uint.MaxValue;
+        protected uint M => RAND_MAX;
 
 
         protected uint m_Seed = 0;
 
 
-        public override void Init(int seed) => Init((uint)seed);
         public override void Init(uint seed) => m_Seed = seed;
-        public override int Rand()
+        public override uint GetRand()
         {
             m_Seed = (A * m_Seed + C) % M;
-            return (int)(m_Seed >> 1);
+            return m_Seed;
         }
     }
 }

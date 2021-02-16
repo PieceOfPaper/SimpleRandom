@@ -1,44 +1,37 @@
-
+﻿
 namespace SimpleRandom
 {
     public class SubtractiveGeneratorRandom : Random32
     {
         //ref: https://rosettacode.org/wiki/Subtractive_generator
 
-        const int MAX = 1000000000;
-        private int[] state;
-        private int pos;
+        protected uint[] m_State;
+        protected uint m_Pos;
         
-        public override int RandMax => MAX;
-
-        public override void Init(int seed)
+        public override void Init(uint seed)
         {
-            state = new int[55];
-    
-            int[] temp = new int[55];
-            temp[0] = mod(seed);
+            m_State = new uint[55];
+
+            uint[] temp = new uint[55];
+            temp[0] = seed;
             temp[1] = 1;
-            for(int i = 2; i < 55; ++i)
-                temp[i] = mod(temp[i - 2] - temp[i - 1]);
+            for(uint i = 2; i < 55; ++i)
+                temp[i] = temp[i - 2] - temp[i - 1];
     
-            for(int i = 0; i < 55; ++i)
-                state[i] = temp[(34 * (i + 1)) % 55];
-    
-            pos = 54;
-            for(int i = 55; i < 220; ++i)
+            for(uint i = 0; i < 55; ++i)
+                m_State[i] = temp[(34 * (i + 1)) % 55];
+
+            m_Pos = 54;
+            for(uint i = 55; i < 220; ++i)
                 Rand();
         }
 
-        public override int Rand()
+        public override uint GetRand()
         {
-            int temp = mod(state[(pos + 1) % 55] - state[(pos + 32) % 55]);
-            pos = (pos + 1) % 55;
-            state[pos] = temp;
+            var temp = m_State[(m_Pos + 1) % 55] - m_State[(m_Pos + 32) % 55];
+            m_Pos = (m_Pos + 1) % 55;
+            m_State[m_Pos] = temp;
             return temp;
-        }
-
-        private int mod(int n) {
-            return ((n % MAX) + MAX) % MAX;
         }
     }
 }

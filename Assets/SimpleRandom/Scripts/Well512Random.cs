@@ -1,4 +1,4 @@
-
+﻿
 namespace SimpleRandom
 {
     public class Well512Random : Random32
@@ -16,7 +16,6 @@ namespace SimpleRandom
         uint[] m_States = new uint[R];
       
 
-        public override void Init(int seed) => Init((uint)seed);
         public override void Init(uint seed)
         {
             m_StateIndex = 0;
@@ -27,7 +26,7 @@ namespace SimpleRandom
             }
         }
 
-        public override int Rand()
+        public override uint GetRand()
         {
             var z0 = m_States[(m_StateIndex+15) & 0x0000000fU];
             var z1 = (m_States[m_StateIndex]^(m_States[m_StateIndex]<<(16))) ^ (m_States[(m_StateIndex+M1) & 0x0000000fU]^(m_States[(m_StateIndex+M1) & 0x0000000fU]<<(15)));
@@ -36,7 +35,7 @@ namespace SimpleRandom
             var newV0 = (z0^(z0<<2)) ^ (z1^(z1<<18)) ^ (z2<<28) ^ (newV1 ^ ((newV1<<5)) & 0xda442d24U);
             m_StateIndex = (m_StateIndex + 15) & 0x0000000fU;
             m_States[m_StateIndex] = newV0;
-            return (int)(m_States[m_StateIndex] >> 1);
+            return m_States[m_StateIndex];
         }
     }
 }

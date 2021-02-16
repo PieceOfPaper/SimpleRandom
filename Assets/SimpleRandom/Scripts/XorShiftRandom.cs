@@ -1,4 +1,4 @@
-
+﻿
 namespace SimpleRandom
 {
     public class XorShiftRandom : Random32
@@ -7,21 +7,16 @@ namespace SimpleRandom
 
         uint m_Seed;
         
+        public override void Init(uint seed) => m_Seed = seed;
 
-        public override void Init(int seed) => Init((uint)seed);
-        public override void Init(uint seed)
-        {
-            m_Seed = seed;
-        }
-
-        public override int Rand()
+        public override uint GetRand()
         {
             uint x = m_Seed;
             x ^= x << 13;
             x ^= x >> 17;
             x ^= x << 5;
             m_Seed = x;
-            return (int)(m_Seed >> 1);
+            return m_Seed;
         }
     }
 }

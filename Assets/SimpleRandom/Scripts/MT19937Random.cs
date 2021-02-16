@@ -22,9 +22,9 @@ namespace SimpleRandom
         uint m_Index = 0;
 
 
-        public override void Init(int seed)
+        public override void Init(uint seed)
         {
-            m_MT[0] = (uint)seed;
+            m_MT[0] = seed;
             for (m_Index = 1; m_Index < N; m_Index++)
             {
                 m_MT[m_Index] = F * (m_MT[m_Index - 1] ^ (m_MT[m_Index - 1] >> 30)) + m_Index;
@@ -32,7 +32,7 @@ namespace SimpleRandom
             }
         }
 
-        public override int Rand()
+        public override uint GetRand()
         {
             uint x = 0;
 
@@ -65,7 +65,7 @@ namespace SimpleRandom
             x ^= (x << 15) & 0xefc60000;
             x ^= (x >> 18);
 
-            return (int)(x >> 1);
+            return x;
         }
     }
 }
